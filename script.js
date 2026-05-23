@@ -50,52 +50,42 @@ window.addEventListener('resize', fitCardBorder);
   tick();
 })();
 
-// ── ScrollTrigger section reveals ───────────────────────────────
+// ── ScrollTrigger — About section only ──────────────────────────
+// Everything below About appears instantly via CSS; animations only
+// earn their cost at the top of the page where they do narrative work.
 function setupReveals() {
-  // Each section header triggers independently
-  gsap.utils.toArray('.section-header').forEach(el => {
-    gsap.fromTo(el,
+  const aboutHeader = document.querySelector('#about .section-header');
+  const aboutText   = document.querySelector('.about-text');
+
+  if (aboutHeader) {
+    gsap.fromTo(aboutHeader,
       { opacity: 0, y: 24 },
       { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' } }
+        scrollTrigger: {
+          trigger: aboutHeader,
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+        },
+      }
     );
-  });
+  }
 
-  gsap.fromTo('.about-text',
-    { opacity: 0, y: 24 },
-    { opacity: 1, y: 0, duration: 0.75, ease: 'power2.out',
-      scrollTrigger: { trigger: '.about-text', start: 'top 88%', toggleActions: 'play none none none' } }
-  );
-
-  gsap.fromTo('.skill-category',
-    { opacity: 0, y: 24 },
-    { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.09,
-      scrollTrigger: { trigger: '.skills-grid', start: 'top 88%', toggleActions: 'play none none none' } }
-  );
-
-  gsap.fromTo('.project-card--full',
-    { opacity: 0, y: 28 },
-    { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
-      scrollTrigger: { trigger: '.project-card--full', start: 'top 88%', toggleActions: 'play none none none' } }
-  );
-
-  gsap.fromTo('.projects-grid .project-card',
-    { opacity: 0, y: 28 },
-    { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
-      scrollTrigger: { trigger: '.projects-grid', start: 'top 88%', toggleActions: 'play none none none' } }
-  );
-
-  gsap.fromTo('.exp-entry',
-    { opacity: 0, y: 24 },
-    { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out', stagger: 0.13,
-      scrollTrigger: { trigger: '.exp-timeline', start: 'top 85%', toggleActions: 'play none none none' } }
-  );
-
-  gsap.fromTo('.cert-card',
-    { opacity: 0, y: 24 },
-    { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', stagger: 0.09,
-      scrollTrigger: { trigger: '.certs-grid', start: 'top 88%', toggleActions: 'play none none none' } }
-  );
+  if (aboutText) {
+    gsap.fromTo(aboutText,
+      { opacity: 0, y: 24 },
+      { opacity: 1, y: 0, duration: 0.75, ease: 'power2.out',
+        scrollTrigger: {
+          trigger: aboutText,
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+        },
+        onComplete: () => {
+          // Kill all remaining triggers — nothing below About needs them
+          ScrollTrigger.getAll().forEach(t => t.kill());
+        },
+      }
+    );
+  }
 }
 
 // ── Main init ────────────────────────────────────────────────────
@@ -121,7 +111,12 @@ document.fonts.ready.then(() => {
 
   // Lenis smooth scroll
   if (!reducedMotion) {
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      duration: 1.0,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 0.8,
+    });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);

@@ -350,6 +350,12 @@ body {
    BELOW-FOLD
    ========================================================= */
 
+/* Sections below About appear immediately — no animation cost */
+.section-content {
+  opacity: 1;
+  transform: none;
+}
+
 .below-fold {
   position: relative;
   z-index: 1;
