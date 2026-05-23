@@ -1,5 +1,3 @@
-gsap.registerPlugin(ScrollTrigger);
-
 // ── Ken Burns on background ──────────────────────────────────────
 gsap.to('.bg-image', {
   scale: 1.05,
@@ -50,44 +48,6 @@ window.addEventListener('resize', fitCardBorder);
   tick();
 })();
 
-// ── ScrollTrigger — About section only ──────────────────────────
-// Everything below About appears instantly via CSS; animations only
-// earn their cost at the top of the page where they do narrative work.
-function setupReveals() {
-  const aboutHeader = document.querySelector('#about .section-header');
-  const aboutText   = document.querySelector('.about-text');
-
-  if (aboutHeader) {
-    gsap.fromTo(aboutHeader,
-      { opacity: 0, y: 24 },
-      { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out',
-        scrollTrigger: {
-          trigger: aboutHeader,
-          start: 'top 88%',
-          toggleActions: 'play none none none',
-        },
-      }
-    );
-  }
-
-  if (aboutText) {
-    gsap.fromTo(aboutText,
-      { opacity: 0, y: 24 },
-      { opacity: 1, y: 0, duration: 0.75, ease: 'power2.out',
-        scrollTrigger: {
-          trigger: aboutText,
-          start: 'top 88%',
-          toggleActions: 'play none none none',
-        },
-        onComplete: () => {
-          // Kill all remaining triggers — nothing below About needs them
-          ScrollTrigger.getAll().forEach(t => t.kill());
-        },
-      }
-    );
-  }
-}
-
 // ── Main init ────────────────────────────────────────────────────
 document.fonts.ready.then(() => {
   fitCardBorder();
@@ -114,7 +74,6 @@ document.fonts.ready.then(() => {
     overlay.style.display = 'none';
     gsap.set('#card', { opacity: 1, y: 0 });
     gsap.set([outer, inner], { strokeDashoffset: 0 });
-    setupReveals();
     return;
   }
 
@@ -129,7 +88,6 @@ document.fonts.ready.then(() => {
     gsap.set('#card', { opacity: 1, y: 0 });
     gsap.set([outer, inner], { strokeDashoffset: 0 });
     sessionStorage.setItem('hz-intro-played', '1');
-    setupReveals();
   }
 
   overlay.addEventListener('click', skip);
@@ -139,7 +97,6 @@ document.fonts.ready.then(() => {
     onComplete() {
       sessionStorage.setItem('hz-intro-played', '1');
       overlay.removeEventListener('click', skip);
-      setupReveals();
     },
   });
 
