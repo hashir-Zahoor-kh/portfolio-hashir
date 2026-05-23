@@ -35,6 +35,57 @@ body {
 }
 
 /* =========================================================
+   INTRO OVERLAY
+   ========================================================= */
+
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: #0a0807;
+  cursor: pointer;
+  user-select: none;
+}
+
+.intro-line {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 clamp(2rem, 10vw, 8rem);
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1rem, 2.2vw, 1.45rem);
+  color: var(--cream);
+  line-height: 1.65;
+  opacity: 0;
+}
+
+#line-5 {
+  font-weight: 600;
+  font-size: clamp(1.3rem, 2.8vw, 1.85rem);
+  letter-spacing: 0.01em;
+}
+
+.intro-skip {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.57rem;
+  letter-spacing: 0.2em;
+  color: rgba(244, 234, 214, 0.22);
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* =========================================================
    BACKGROUND LAYER
    ========================================================= */
 
