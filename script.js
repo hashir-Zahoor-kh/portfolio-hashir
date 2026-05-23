@@ -30,10 +30,10 @@ window.addEventListener('resize', fitCardBorder);
 // ── Typing animation ─────────────────────────────────────────────
 (function initTyping() {
   const phrases = [
-    'DevOps Engineer',
-    'Platform Engineer',
-    'Site Reliability Engineer',
+    'Distributed Systems Engineer',
+    'Infrastructure Engineer',
     'Cloud-Native Builder',
+    'Software Engineer',
   ];
   const el = document.getElementById('typing-text');
   let pi = 0, ci = 0, deleting = false;
