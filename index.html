@@ -26,19 +26,81 @@
 
     <!-- Central Card -->
     <div class="card-wrapper" id="card">
-      <svg class="card-border" viewBox="0 0 420 560" preserveAspectRatio="none" aria-hidden="true">
-        <rect class="border-outer" x="1" y="1" width="418" height="558" />
-        <rect class="border-inner" x="9" y="9" width="402" height="542" />
+
+      <!-- SVG double-line border — geometry set via JS so it fits any card height -->
+      <svg class="card-border" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none">
+        <rect class="border-outer" />
+        <rect class="border-inner" />
       </svg>
 
       <div class="card-content">
+
+        <!-- Eyebrow -->
         <span class="eyebrow">HZ — PORTFOLIO · 2026</span>
+
+        <!-- Name -->
         <h1 class="display-name">Hashir Zahoor</h1>
+
+        <!-- Descriptor -->
         <p class="descriptor">Platform Engineer · DevOps · SRE</p>
+
+        <!-- Typing animation -->
+        <div class="typing-row" aria-hidden="true">
+          <span class="typing-text" id="typing-text"></span><span class="typing-cursor">|</span>
+        </div>
+
+        <!-- Positioning paragraph -->
+        <p class="position-para">CS graduate building production-grade cloud-native systems. Chaos engineering platforms, LLM-driven IaC, full-stack analytics — Go, Terraform, AWS, Kubernetes.</p>
+
+        <!-- Divider -->
+        <div class="card-divider" aria-hidden="true"></div>
+
+        <!-- Roman-numeral nav -->
+        <nav class="card-nav" aria-label="Page sections">
+          <a href="#about" class="nav-item">
+            <span class="nav-numeral">I.</span>
+            <span class="nav-label">About</span>
+          </a>
+          <a href="#skills" class="nav-item">
+            <span class="nav-numeral">II.</span>
+            <span class="nav-label">Skills</span>
+          </a>
+          <a href="#projects" class="nav-item">
+            <span class="nav-numeral">III.</span>
+            <span class="nav-label">Projects</span>
+          </a>
+          <a href="#experience" class="nav-item">
+            <span class="nav-numeral">IV.</span>
+            <span class="nav-label">Experience</span>
+          </a>
+          <a href="#certifications" class="nav-item">
+            <span class="nav-numeral">V.</span>
+            <span class="nav-label">Certifications</span>
+          </a>
+          <a href="#contact" class="nav-item">
+            <span class="nav-numeral">VI.</span>
+            <span class="nav-label">Contact</span>
+          </a>
+        </nav>
+
+        <!-- Scroll hint -->
+        <div class="scroll-hint" aria-hidden="true">
+          <span class="scroll-hint-text">scroll down</span>
+          <div class="scroll-hint-line"></div>
+        </div>
+
       </div>
     </div>
 
   </main>
+
+  <!-- Below-fold sections (stubs for now, built in Stage 4) -->
+  <div id="about"></div>
+  <div id="skills"></div>
+  <div id="projects"></div>
+  <div id="experience"></div>
+  <div id="certifications"></div>
+  <div id="contact"></div>
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

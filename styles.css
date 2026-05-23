@@ -62,7 +62,7 @@ body {
 }
 
 /* =========================================================
-   MAIN VIEW — full-viewport hero
+   MAIN VIEW
    ========================================================= */
 
 .main-view {
@@ -71,7 +71,8 @@ body {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding: 3rem clamp(3rem, 12vw, 14rem) 3rem 3rem;
 }
 
 /* =========================================================
@@ -82,6 +83,9 @@ body {
   position: relative;
   width: 420px;
   padding: 2.5rem;
+  background: rgba(244, 234, 214, 0.96);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 /* SVG double-line border */
@@ -90,8 +94,8 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
   overflow: visible;
+  pointer-events: none;
 }
 
 .border-outer,
@@ -101,47 +105,40 @@ body {
   stroke-width: 1;
 }
 
-/* Card background */
-.card-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(244, 234, 214, 0.96);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  z-index: -1;
-}
-
+/* Card content stack */
 .card-content {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 0.5rem 0;
 }
 
-/* Eyebrow */
+/* ── Eyebrow ─────────────────────────────────────────── */
+
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.6rem;
   font-weight: 400;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink-faint);
+  margin-bottom: 0.8rem;
 }
 
-/* Display name */
+/* ── Display name ────────────────────────────────────── */
+
 .display-name {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 2.5rem;
-  line-height: 1.1;
+  line-height: 1.08;
   color: var(--ink);
   letter-spacing: -0.01em;
+  margin-bottom: 0.35rem;
 }
 
-/* Italic descriptor */
+/* ── Descriptor ──────────────────────────────────────── */
+
 .descriptor {
   font-family: var(--font-display);
   font-style: italic;
@@ -149,15 +146,147 @@ body {
   font-size: 1rem;
   color: var(--ink-soft);
   letter-spacing: 0.02em;
+  margin-bottom: 0.8rem;
+}
+
+/* ── Typing animation ────────────────────────────────── */
+
+.typing-row {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  min-height: 1.4em;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.typing-cursor {
+  color: var(--accent);
+  animation: blink 0.85s step-end infinite;
+  margin-left: 1px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Positioning paragraph ───────────────────────────── */
+
+.position-para {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 1.4rem;
+}
+
+/* ── Divider ─────────────────────────────────────────── */
+
+.card-divider {
+  height: 1px;
+  background: var(--ink);
+  opacity: 0.14;
+  margin-bottom: 1.2rem;
+}
+
+/* ── Roman-numeral nav ───────────────────────────────── */
+
+.card-nav {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.6rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding: 0.38rem 0;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid rgba(26, 22, 20, 0.07);
+  transition: background 0.18s;
+}
+
+.nav-item:last-child {
+  border-bottom: none;
+}
+
+.nav-item:hover .nav-label {
+  color: var(--accent);
+}
+
+.nav-item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.nav-numeral {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 300;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+  min-width: 1.6rem;
+}
+
+.nav-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: color 0.18s;
+}
+
+/* ── Scroll hint ─────────────────────────────────────── */
+
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+}
+
+.scroll-hint-text {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  color: var(--ink-faint);
+}
+
+.scroll-hint-line {
+  width: 1px;
+  height: 30px;
+  background: var(--ink-faint);
+  transform-origin: top center;
+  animation: scrollDrop 2s ease-in-out infinite;
+}
+
+@keyframes scrollDrop {
+  0%   { transform: scaleY(0); opacity: 0; }
+  15%  { opacity: 1; }
+  65%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
 }
 
 /* =========================================================
-   RESPONSIVE — mobile baseline
+   RESPONSIVE
    ========================================================= */
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+  .main-view {
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
   .card-wrapper {
-    width: calc(100vw - 2rem);
+    width: min(420px, calc(100vw - 2rem));
     padding: 1.75rem;
   }
 
