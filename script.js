@@ -109,19 +109,6 @@ document.fonts.ready.then(() => {
     gsap.to(inner, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', delay: 0.13 });
   }
 
-  // Lenis smooth scroll
-  if (!reducedMotion) {
-    const lenis = new Lenis({
-      duration: 1.0,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 0.8,
-    });
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-    gsap.ticker.lagSmoothing(0);
-  }
-
   // Skip intro entirely on second visit or reduced motion
   if (reducedMotion || alreadyPlayed) {
     overlay.style.display = 'none';
