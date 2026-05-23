@@ -404,6 +404,11 @@ body {
   line-height: 1.85;
   color: var(--ink-soft);
   max-width: 720px;
+  margin-bottom: 1.25rem;
+}
+
+.about-text:last-child {
+  margin-bottom: 0;
 }
 
 /* ── Skills ──────────────────────────────────────────── */
