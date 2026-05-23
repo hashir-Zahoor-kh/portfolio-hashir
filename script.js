@@ -50,13 +50,61 @@ window.addEventListener('resize', fitCardBorder);
   tick();
 })();
 
-// ── Intro sequence ───────────────────────────────────────────────
+// ── ScrollTrigger section reveals ───────────────────────────────
+function setupReveals() {
+  // Each section header triggers independently
+  gsap.utils.toArray('.section-header').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 24 },
+      { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' } }
+    );
+  });
+
+  gsap.fromTo('.about-text',
+    { opacity: 0, y: 24 },
+    { opacity: 1, y: 0, duration: 0.75, ease: 'power2.out',
+      scrollTrigger: { trigger: '.about-text', start: 'top 88%', toggleActions: 'play none none none' } }
+  );
+
+  gsap.fromTo('.skill-category',
+    { opacity: 0, y: 24 },
+    { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.09,
+      scrollTrigger: { trigger: '.skills-grid', start: 'top 88%', toggleActions: 'play none none none' } }
+  );
+
+  gsap.fromTo('.project-card--full',
+    { opacity: 0, y: 28 },
+    { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
+      scrollTrigger: { trigger: '.project-card--full', start: 'top 88%', toggleActions: 'play none none none' } }
+  );
+
+  gsap.fromTo('.projects-grid .project-card',
+    { opacity: 0, y: 28 },
+    { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1,
+      scrollTrigger: { trigger: '.projects-grid', start: 'top 88%', toggleActions: 'play none none none' } }
+  );
+
+  gsap.fromTo('.exp-entry',
+    { opacity: 0, y: 24 },
+    { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out', stagger: 0.13,
+      scrollTrigger: { trigger: '.exp-timeline', start: 'top 85%', toggleActions: 'play none none none' } }
+  );
+
+  gsap.fromTo('.cert-card',
+    { opacity: 0, y: 24 },
+    { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', stagger: 0.09,
+      scrollTrigger: { trigger: '.certs-grid', start: 'top 88%', toggleActions: 'play none none none' } }
+  );
+}
+
+// ── Main init ────────────────────────────────────────────────────
 document.fonts.ready.then(() => {
   fitCardBorder();
 
-  const overlay  = document.getElementById('intro-overlay');
-  const outer    = document.querySelector('.border-outer');
-  const inner    = document.querySelector('.border-inner');
+  const overlay       = document.getElementById('intro-overlay');
+  const outer         = document.querySelector('.border-outer');
+  const inner         = document.querySelector('.border-inner');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const alreadyPlayed = sessionStorage.getItem('hz-intro-played');
 
@@ -71,18 +119,26 @@ document.fonts.ready.then(() => {
     gsap.to(inner, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', delay: 0.13 });
   }
 
-  // Skip intro entirely
+  // Lenis smooth scroll
+  if (!reducedMotion) {
+    const lenis = new Lenis();
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  // Skip intro entirely on second visit or reduced motion
   if (reducedMotion || alreadyPlayed) {
     overlay.style.display = 'none';
     gsap.set('#card', { opacity: 1, y: 0 });
     gsap.set([outer, inner], { strokeDashoffset: 0 });
+    setupReveals();
     return;
   }
 
   // Card hidden until intro resolves
   gsap.set('#card', { opacity: 0, y: 24 });
 
-  // Build narrative timeline
   let tl;
 
   function skip() {
@@ -91,6 +147,7 @@ document.fonts.ready.then(() => {
     gsap.set('#card', { opacity: 1, y: 0 });
     gsap.set([outer, inner], { strokeDashoffset: 0 });
     sessionStorage.setItem('hz-intro-played', '1');
+    setupReveals();
   }
 
   overlay.addEventListener('click', skip);
@@ -100,6 +157,7 @@ document.fonts.ready.then(() => {
     onComplete() {
       sessionStorage.setItem('hz-intro-played', '1');
       overlay.removeEventListener('click', skip);
+      setupReveals();
     },
   });
 
@@ -108,16 +166,16 @@ document.fonts.ready.then(() => {
   lines.forEach((line, i) => {
     const isLast = i === lines.length - 1;
 
-    // Fade up in
+    // Fade up in — slower for readability
     tl.fromTo(line,
-      { opacity: 0, y: 8 },
-      { opacity: 1, y: 0, duration: 0.42, ease: 'power2.out' }
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }
     );
 
-    // Hold, then fade out
+    // Hold long enough to read, last line holds longest
     tl.to(line,
-      { opacity: 0, duration: 0.22, ease: 'power2.in' },
-      isLast ? '+=0.78' : '+=0.42'
+      { opacity: 0, duration: 0.35, ease: 'power2.in' },
+      isLast ? '+=1.8' : '+=1.1'
     );
   });
 
@@ -127,7 +185,7 @@ document.fonts.ready.then(() => {
     duration: 1.2,
     ease: 'power3.inOut',
     onComplete: () => { overlay.style.display = 'none'; },
-  }, '+=0.06');
+  }, '+=0.1');
 
   // Card entrance — overlaps with wipe
   tl.to('#card', {

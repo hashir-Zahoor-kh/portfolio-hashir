@@ -104,13 +104,297 @@
 
   </main>
 
-  <!-- Below-fold sections (stubs for now, built in Stage 4) -->
-  <div id="about"></div>
-  <div id="skills"></div>
-  <div id="projects"></div>
-  <div id="experience"></div>
-  <div id="certifications"></div>
-  <div id="contact"></div>
+  <!-- ░░ BELOW-FOLD SECTIONS ░░ -->
+  <div class="below-fold">
+
+    <!-- I. About -->
+    <section id="about" class="section">
+      <div class="section-inner">
+        <header class="section-header">
+          <span class="section-numeral">I.</span>
+          <h2 class="section-title">About</h2>
+        </header>
+        <p class="about-text">Hashir Zahoor is a computer scientist from Adelphi University (B.S., May 2025) building production-grade cloud-native systems. His work centers on chaos engineering, LLM-driven infrastructure tooling, and reliability platforms — the layer that lets modern applications survive contact with reality. Open to full-time roles in DevOps, Site Reliability, and Platform Engineering. Open to relocate anywhere in the United States.</p>
+      </div>
+    </section>
+
+    <!-- II. Skills -->
+    <section id="skills" class="section">
+      <div class="section-inner">
+        <header class="section-header">
+          <span class="section-numeral">II.</span>
+          <h2 class="section-title">Skills</h2>
+        </header>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3 class="skill-category-title">Languages &amp; Frameworks</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Java (Spring Boot)</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">Next.js</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Go</span>
+              <span class="skill-tag">Bash</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category-title">APIs, Testing &amp; Integration</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">REST APIs</span>
+              <span class="skill-tag">JSON</span>
+              <span class="skill-tag">JUnit</span>
+              <span class="skill-tag">Jira</span>
+              <span class="skill-tag">Postman</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category-title">Cloud &amp; CI/CD</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">AWS (EC2, S3, IAM, CloudWatch)</span>
+              <span class="skill-tag">Cloudflare</span>
+              <span class="skill-tag">GitHub Actions</span>
+              <span class="skill-tag">Terraform</span>
+              <span class="skill-tag">Helm</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category-title">Containers, Streaming &amp; Observability</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">Kubernetes</span>
+              <span class="skill-tag">Kafka</span>
+              <span class="skill-tag">Prometheus</span>
+              <span class="skill-tag">Grafana</span>
+              <span class="skill-tag">New Relic</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category-title">Databases &amp; Version Control</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">Redis</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">Git</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- III. Projects -->
+    <section id="projects" class="section">
+      <div class="section-inner">
+        <header class="section-header">
+          <span class="section-numeral">III.</span>
+          <h2 class="section-title">Projects</h2>
+        </header>
+
+        <!-- 01 Havoc — full-width flagship -->
+        <a href="https://havoc-wheat.vercel.app/" class="project-card project-card--full" target="_blank" rel="noopener noreferrer">
+          <span class="project-num" aria-hidden="true">01</span>
+          <div class="project-meta">
+            <h3 class="project-title">Havoc</h3>
+            <div class="project-tags">
+              <span class="project-tag">Go</span>
+              <span class="project-tag">Kubernetes</span>
+              <span class="project-tag">Kafka</span>
+              <span class="project-tag">Strimzi</span>
+              <span class="project-tag">Postgres / RDS</span>
+              <span class="project-tag">Redis</span>
+              <span class="project-tag">Terraform</span>
+              <span class="project-tag">AWS EKS</span>
+              <span class="project-tag">Helm</span>
+            </div>
+          </div>
+          <p class="project-desc">The idea behind chaos engineering is straightforward: break things deliberately so they stop breaking by surprise. Havoc runs on AWS EKS and lets you schedule experiments, pod kills, network latency injection, and CPU pressure through a CLI that dispatches commands via Kafka to agents on every cluster node. Each agent enforces a blast radius limit so nothing gets out of hand, and a Redis kill switch stops everything cold if it does. Every result lands in a Postgres ledger. The whole stack is provisioned with Terraform and deploys via Helm.</p>
+          <span class="project-link">View live →</span>
+        </a>
+
+        <!-- 02–06 grid -->
+        <div class="projects-grid">
+
+          <!-- 02 TerraSense -->
+          <a href="https://github.com/hashir-Zahoor-kh/terrasense" class="project-card" target="_blank" rel="noopener noreferrer">
+            <span class="project-num" aria-hidden="true">02</span>
+            <div class="project-meta">
+              <h3 class="project-title">TerraSense</h3>
+              <div class="project-tags">
+                <span class="project-tag">Go</span>
+                <span class="project-tag">PostgreSQL</span>
+                <span class="project-tag">Terraform</span>
+                <span class="project-tag">Anthropic SDK</span>
+                <span class="project-tag">Next.js</span>
+                <span class="project-tag">Checkov</span>
+              </div>
+            </div>
+            <p class="project-desc">You describe the infrastructure you want in plain English. TerraSense generates the Terraform HCL. What makes it more than a code generator is the correction loop: it runs Checkov on every plan, feeds the policy violations back to the model, and keeps rewriting until the plan is clean. Nothing runs terraform apply without a human approving it first. Every draft, violation, and correction is logged to Postgres, so there's always a full audit trail.</p>
+            <span class="project-link">View on GitHub →</span>
+          </a>
+
+          <!-- 03 CricInsight -->
+          <a href="https://cric-insight-seven.vercel.app" class="project-card" target="_blank" rel="noopener noreferrer">
+            <span class="project-num" aria-hidden="true">03</span>
+            <div class="project-meta">
+              <h3 class="project-title">CricInsight</h3>
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">FastAPI</span>
+                <span class="project-tag">PostgreSQL</span>
+                <span class="project-tag">AWS</span>
+                <span class="project-tag">React</span>
+              </div>
+            </div>
+            <p class="project-desc">I wanted to compare cricket players across T20, ODI, and Test formats using real match data. The backend is FastAPI over PostgreSQL with 2,962 international matches loaded in. Midway through the build, my API provider hit its free-tier limit, so I switched ingestion to Cricsheet and rewrote just that layer. The schema, API, and frontend stayed untouched. It's live.</p>
+            <span class="project-link">View live demo →</span>
+          </a>
+
+          <!-- 04 Kube-Sentinel -->
+          <a href="https://github.com/hashir-Zahoor-kh/kube-sentinel" class="project-card" target="_blank" rel="noopener noreferrer">
+            <span class="project-num" aria-hidden="true">04</span>
+            <div class="project-meta">
+              <h3 class="project-title">Kube-Sentinel</h3>
+              <div class="project-tags">
+                <span class="project-tag">Go</span>
+                <span class="project-tag">Kubernetes</span>
+                <span class="project-tag">Prometheus</span>
+              </div>
+            </div>
+            <p class="project-desc">When a pod enters CrashLoopBackOff, someone usually gets paged at 3 AM to run kubectl describe and figure out what happened. Kube-Sentinel handles that loop automatically. It watches every pod via a streaming watch, reads exit codes and logs to classify the failure, and applies the right fix — memory patch for OOM kills, restart-then-rollback for repeated crashes, alert-only for config errors (those still need a human). Runs as a non-root distroless container with Prometheus metrics on :8080.</p>
+            <span class="project-link">View on GitHub →</span>
+          </a>
+
+          <!-- 05 Canary-Runner -->
+          <a href="https://github.com/hashir-Zahoor-kh/canary-runner" class="project-card" target="_blank" rel="noopener noreferrer">
+            <span class="project-num" aria-hidden="true">05</span>
+            <div class="project-meta">
+              <h3 class="project-title">Canary-Runner</h3>
+              <div class="project-tags">
+                <span class="project-tag">Go</span>
+                <span class="project-tag">Docker</span>
+                <span class="project-tag">Prometheus</span>
+              </div>
+            </div>
+            <p class="project-desc">A service that hits your HTTP endpoints on a schedule and asks: Are we meeting our SLOs? It tracks availability and latency compliance over a rolling window and calculates how much error budget you have left. When a threshold is crossed — budget below 50%, five failures in a row, budget gone — it fires one alert. Not one per minute. One. The alert is structured JSON, so you can pipe it to PagerDuty or Slack with a single command. Ships as a ~15MB Docker image.</p>
+            <span class="project-link">View on GitHub →</span>
+          </a>
+
+          <!-- 06 Multithreaded Chess — spans full width -->
+          <a href="https://github.com/hashir-Zahoor-kh/Multithreaded-Chess-Game" class="project-card project-card--span" target="_blank" rel="noopener noreferrer">
+            <span class="project-num" aria-hidden="true">06</span>
+            <div class="project-meta">
+              <h3 class="project-title">Multithreaded Chess</h3>
+              <div class="project-tags">
+                <span class="project-tag">Java</span>
+                <span class="project-tag">JavaFX</span>
+                <span class="project-tag">TCP Sockets</span>
+              </div>
+            </div>
+            <p class="project-desc">A networked chess game where two players connect to a server, get paired, and play in real time. The server handles up to 20 concurrent matches simultaneously, each isolated in its own thread. The game engine validates every legal move using FEN-based board state — castling, en passant, and pawn promotion included. Client is built in JavaFX, communication runs over TCP sockets with object serialization.</p>
+            <span class="project-link">View on GitHub →</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- IV. Experience -->
+    <section id="experience" class="section">
+      <div class="section-inner">
+        <header class="section-header">
+          <span class="section-numeral">IV.</span>
+          <h2 class="section-title">Experience</h2>
+        </header>
+        <div class="exp-timeline">
+
+          <div class="exp-entry">
+            <div class="exp-left">
+              <span class="exp-date">06/2025 – Present</span>
+              <span class="exp-company">UTCLI Solutions</span>
+            </div>
+            <div class="exp-right">
+              <h3 class="exp-role">Software Engineer</h3>
+              <ul class="exp-bullets">
+                <li><span class="bullet-arrow" aria-hidden="true">→</span>Refactored a legacy module into a Java/Spring Boot microservice using the Factory Design Pattern, cutting API response time from 520ms to 340ms and reducing session abandonment by 12%.</li>
+                <li><span class="bullet-arrow" aria-hidden="true">→</span>Built a reusable React and TypeScript component library with RESTful API integrations across 50+ modules, applying TDD and agile sprint delivery to accelerate feature development by 30%.</li>
+                <li><span class="bullet-arrow" aria-hidden="true">→</span>Implemented automated health-check gates and rollback triggers in a CI/CD pipeline via GitHub Actions using Docker health checks and custom Python validation scripts, reducing deployment failure rates by 22%.</li>
+                <li><span class="bullet-arrow" aria-hidden="true">→</span>Integrated Cloudflare and AWS CloudWatch monitoring into production pipelines, enabling real-time service health visibility and reducing manual operational overhead by 10+ hours per week.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-entry">
+            <div class="exp-left">
+              <span class="exp-date">10/2022 – 04/2025</span>
+              <span class="exp-company">Bridges to Adelphi</span>
+            </div>
+            <div class="exp-right">
+              <h3 class="exp-role">Software Engineer</h3>
+              <ul class="exp-bullets">
+                <li><span class="bullet-arrow" aria-hidden="true">→</span>Built a Node.js, React, and MongoDB automation platform using event-driven architecture patterns, reducing report processing time by 66% and ensuring 24/7 service availability.</li>
+                <li><span class="bullet-arrow" aria-hidden="true">→</span>Instrumented the platform with New Relic, establishing the team's first observability practice and enabling proactive detection of bugs and performance degradation.</li>
+                <li><span class="bullet-arrow" aria-hidden="true">→</span>Introduced a data validation engine into the internal tooling suite, providing real-time feedback on student submissions and improving operational efficiency by 25%.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-entry">
+            <div class="exp-left">
+              <span class="exp-date">05/2024 – 08/2024</span>
+              <span class="exp-company">UTCLI Solutions</span>
+            </div>
+            <div class="exp-right">
+              <h3 class="exp-role">Software Engineer Intern</h3>
+              <ul class="exp-bullets">
+                <li><span class="bullet-arrow" aria-hidden="true">→</span>Responded to a production SSL/TLS outage during a live Cloudflare DNS migration — isolated root cause to an origin server SSL misconfiguration using dig and curl, restoring service within 42 minutes with zero data loss.</li>
+                <li><span class="bullet-arrow" aria-hidden="true">→</span>Hardened post-migration config with Full Strict SSL and Cloudflare edge caching, cutting page load times by 40% and offloading static asset delivery to 200+ global data centers.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- V. Certifications -->
+    <section id="certifications" class="section">
+      <div class="section-inner">
+        <header class="section-header">
+          <span class="section-numeral">V.</span>
+          <h2 class="section-title">Certifications</h2>
+        </header>
+        <div class="certs-grid">
+          <div class="cert-card">
+            <span class="cert-status cert-status--active">Active</span>
+            <h3 class="cert-name">AWS Certified Developer Associate</h3>
+            <p class="cert-issuer">Amazon Web Services</p>
+          </div>
+          <div class="cert-card">
+            <span class="cert-status cert-status--active">Active</span>
+            <h3 class="cert-name">HashiCorp Terraform Associate</h3>
+            <p class="cert-issuer">HashiCorp</p>
+          </div>
+          <div class="cert-card">
+            <span class="cert-status cert-status--active">Active</span>
+            <h3 class="cert-name">Oracle Certified Associate: Java SE</h3>
+            <p class="cert-issuer">Oracle</p>
+          </div>
+          <div class="cert-card">
+            <span class="cert-status cert-status--progress">In Progress</span>
+            <h3 class="cert-name">Certified Kubernetes Administrator</h3>
+            <p class="cert-issuer">Linux Foundation</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact stub for Stage 5 -->
+    <div id="contact"></div>
+
+  </div><!-- /.below-fold -->
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
