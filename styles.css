@@ -1,0 +1,167 @@
+/* =========================================================
+   FOUNDATIONS
+   ========================================================= */
+
+:root {
+  --cream: #f4ead6;
+  --ink: #1a1614;
+  --ink-soft: #3a342e;
+  --ink-faint: #8b8478;
+  --accent: #a0522d;
+  --accent-soft: rgba(160, 82, 45, 0.12);
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Lora', Georgia, serif;
+  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   BACKGROUND LAYER
+   ========================================================= */
+
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform-origin: center center;
+}
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(244, 234, 214, 0.15);
+  pointer-events: none;
+}
+
+/* =========================================================
+   MAIN VIEW — full-viewport hero
+   ========================================================= */
+
+.main-view {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================
+   CENTRAL CARD
+   ========================================================= */
+
+.card-wrapper {
+  position: relative;
+  width: 420px;
+  padding: 2.5rem;
+}
+
+/* SVG double-line border */
+.card-border {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.border-outer,
+.border-inner {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+/* Card background */
+.card-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(244, 234, 214, 0.96);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: -1;
+}
+
+.card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+/* Eyebrow */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Display name */
+.display-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.1;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+/* Italic descriptor */
+.descriptor {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+
+/* =========================================================
+   RESPONSIVE — mobile baseline
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .card-wrapper {
+    width: calc(100vw - 2rem);
+    padding: 1.75rem;
+  }
+
+  .display-name {
+    font-size: 2rem;
+  }
+}
