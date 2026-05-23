@@ -103,6 +103,7 @@ body {
   object-position: center;
   display: block;
   transform-origin: center center;
+  will-change: transform;
 }
 
 .bg-overlay {
@@ -134,9 +135,7 @@ body {
   position: relative;
   width: 420px;
   padding: 2.5rem;
-  background: rgba(244, 234, 214, 0.96);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(244, 234, 214, 0.98);
 }
 
 /* SVG double-line border */
