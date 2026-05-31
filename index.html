@@ -124,10 +124,128 @@
           <span class="section-numeral">I.</span>
           <h2 class="section-title">About</h2>
         </header>
-        <p class="about-text">Most engineering bios pick a lane. Mine doesn't.</p>
-        <p class="about-text">Below this, you'll find a chaos engineering platform that breaks Kubernetes clusters on purpose, an LLM-driven tool that writes Terraform and rewrites it until the plan passes policy, a Kubernetes controller that diagnoses crashing pods at 3 AM so nobody has to, a cricket analytics backend with 2,962 international matches in the database, and a multiplayer chess engine running 20 concurrent games over TCP.</p>
-        <p class="about-text">The argument isn't that any single one of these is groundbreaking. The argument is that the same person built all of them. Most juniors either specialize before they know what they like, or list everything they've touched as if breadth equals depth. I'd rather just show you the work.</p>
-        <p class="about-text">B.S. Computer Science, Adelphi University, May 2025. Based in New York, open to relocation. Seeking full-time software or infrastructure engineering roles.</p>
+        <div class="about-grid">
+
+          <!-- Left column — copy -->
+          <div class="about-copy">
+            <p class="about-thesis">Most engineering bios pick a lane. Mine doesn't.</p>
+            <p class="about-text">I build infrastructure tools. Chaos engineering, Kubernetes controllers, SLO monitors, Terraform-with-an-LLM-on-it. Go on the backend. Terraform underneath. AWS underneath that.</p>
+            <p class="about-text">The argument below isn't that any one of these is groundbreaking. It's that the same person built all of them.</p>
+            <p class="about-text">B.S. Computer Science, Adelphi University, 2025. Based in New York. SRE, DevOps, and Platform Engineering. Work authorized on OPT.</p>
+
+            <blockquote class="about-quote">
+              <p class="about-quote-text">Infrastructure should be boring. Boring means nothing's on fire.</p>
+              <span class="about-quote-attr">— working principle</span>
+            </blockquote>
+
+            <div class="about-currently">
+              <span class="about-currently-label">CURRENTLY</span>
+              <ul class="about-currently-list">
+                <li>Studying for CKA — test scheduled.</li>
+                <li>Building Havoc v0.4 — adding network partition experiments.</li>
+                <li>Reading Designing Data-Intensive Applications.</li>
+                <li>Experimenting with Swift / iOS — wanted to see the other side of the APIs I build.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right column — artifact rail -->
+          <div class="artifact-rail">
+
+            <!-- Card 1: kubectl -->
+            <div class="artifact artifact--r-neg3">
+              <span class="artifact-caption">kubectl</span>
+              <div class="artifact-body">
+                <pre>$ kubectl get pods
+payment-api-7f2   0/1   <span class="hot">CrashLoopBackOff</span></pre>
+              </div>
+            </div>
+
+            <!-- Card 2: architecture -->
+            <div class="artifact artifact--r-pos2">
+              <span class="artifact-caption">architecture</span>
+              <div class="artifact-body artifact-body--svg">
+                <svg viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <defs>
+                    <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                      <path d="M0,0 L0,6 L6,3 z" fill="#3a342e" />
+                    </marker>
+                  </defs>
+                  <!-- api box -->
+                  <rect x="4" y="20" width="70" height="40" rx="2" fill="none" stroke="#1a1614" stroke-width="1" />
+                  <text x="39" y="44" font-family="'JetBrains Mono', monospace" font-size="10" fill="#1a1614" text-anchor="middle">api</text>
+                  <!-- arrow api→kafka -->
+                  <line x1="74" y1="40" x2="102" y2="40" stroke="#3a342e" stroke-width="1" marker-end="url(#arrowhead)" />
+                  <!-- kafka box -->
+                  <rect x="104" y="20" width="70" height="40" rx="2" fill="none" stroke="#1a1614" stroke-width="1" />
+                  <text x="139" y="44" font-family="'JetBrains Mono', monospace" font-size="10" fill="#1a1614" text-anchor="middle">kafka</text>
+                  <!-- arrow kafka→agent -->
+                  <line x1="174" y1="40" x2="202" y2="40" stroke="#3a342e" stroke-width="1" marker-end="url(#arrowhead)" />
+                  <!-- agent box -->
+                  <rect x="204" y="20" width="70" height="40" rx="2" fill="none" stroke="#1a1614" stroke-width="1" />
+                  <text x="239" y="44" font-family="'JetBrains Mono', monospace" font-size="10" fill="#1a1614" text-anchor="middle">agent</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Card 3: terraform plan -->
+            <div class="artifact artifact--r-neg1">
+              <span class="artifact-caption">terraform plan</span>
+              <div class="artifact-body">
+                <pre><span class="add">+</span> resource "aws_s3_bucket" "logs" {
+<span class="add">+</span>   versioning  = true
+<span class="add">+</span>   encryption  = "aws:kms"
+<span class="add">+</span> }</pre>
+              </div>
+            </div>
+
+            <!-- Card 4: prometheus -->
+            <div class="artifact artifact--r-pos3">
+              <span class="artifact-caption">prometheus</span>
+              <div class="artifact-body">
+                <pre>sum(rate(http_requests_total{status="5xx"}[5m]))
+
+<span class="artifact-arrow">→</span> 0.034 req/sec  ·  <span class="ok">within SLO</span></pre>
+              </div>
+            </div>
+
+            <!-- Card 5: grafana -->
+            <div class="artifact artifact--r-neg2">
+              <span class="artifact-caption">grafana</span>
+              <div class="artifact-body artifact-body--svg">
+                <svg viewBox="0 0 280 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <!-- baseline -->
+                  <line x1="0" y1="44" x2="280" y2="44" stroke="#1a1614" stroke-width="1" opacity="0.1" />
+                  <!-- sparkline -->
+                  <polyline
+                    points="0,38 25,32 50,35 75,28 100,30 125,22 150,26 175,18 200,21 225,14 250,16 280,10"
+                    fill="none"
+                    stroke="#a0522d"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <!-- latest reading dot -->
+                  <circle cx="280" cy="10" r="2" fill="#a0522d" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Card 6: helm -->
+            <div class="artifact artifact--r-pos1">
+              <span class="artifact-caption">helm</span>
+              <div class="artifact-body">
+                <pre>replicas: 3
+resources:
+  limits:
+    memory: 512Mi
+  requests:
+    memory: 128Mi</pre>
+              </div>
+            </div>
+
+          </div><!-- /.artifact-rail -->
+        </div><!-- /.about-grid -->
       </div>
     </section>
 
@@ -402,6 +520,105 @@
             <p class="cert-issuer">Linux Foundation</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Interlude — kubectl terminal easter egg -->
+    <section id="terminal-interlude" class="section section--terminal">
+      <div class="section-inner">
+
+        <header class="terminal-section-header">
+          <span class="terminal-eyebrow">INTERLUDE</span>
+          <h2 class="terminal-title">A shell, for the curious</h2>
+          <p class="terminal-subtitle">Type a command. Or click one of the floating chips above. This is a static mock — no real cluster runs underneath.</p>
+        </header>
+
+        <!-- Flowing command marquee -->
+        <div class="marquee-track" id="marquee-track">
+          <div class="marquee-inner" id="marquee-inner">
+            <!-- chip-list-A -->
+            <span class="marquee-chip" data-cmd="kubectl get pods">kubectl get pods</span>
+            <span class="marquee-chip" data-cmd="kubectl describe pod payment-api-broken-1">kubectl describe pod payment-api-broken-1</span>
+            <span class="marquee-chip" data-cmd="kubectl logs payment-api-broken-1">kubectl logs payment-api-broken-1</span>
+            <span class="marquee-chip" data-cmd="terraform plan">terraform plan</span>
+            <span class="marquee-chip" data-cmd="helm list">helm list</span>
+            <span class="marquee-chip" data-cmd="prometheus query">prometheus query</span>
+            <span class="marquee-chip" data-cmd="hashir --about">hashir --about</span>
+            <span class="marquee-chip" data-cmd="hashir --projects">hashir --projects</span>
+            <span class="marquee-chip" data-cmd="hashir --stack">hashir --stack</span>
+            <span class="marquee-chip" data-cmd="hashir --contact">hashir --contact</span>
+            <span class="marquee-chip" data-cmd="whoami">whoami</span>
+            <span class="marquee-chip" data-cmd="fortune">fortune</span>
+            <span class="marquee-chip" data-cmd="ls projects/">ls projects/</span>
+            <span class="marquee-chip" data-cmd="cat /etc/passwd">cat /etc/passwd</span>
+            <span class="marquee-chip" data-cmd="ping recruiter">ping recruiter</span>
+            <span class="marquee-chip" data-cmd="git blame">git blame</span>
+            <span class="marquee-chip" data-cmd="vim">vim</span>
+            <span class="marquee-chip" data-cmd="sudo hire-me">sudo hire-me</span>
+            <span class="marquee-chip" data-cmd="coffee">coffee</span>
+            <span class="marquee-chip" data-cmd="rm -rf /">rm -rf /</span>
+            <span class="marquee-chip" data-cmd="make chaos">make chaos</span>
+            <span class="marquee-chip" data-cmd="help">help</span>
+            <span class="marquee-chip" data-cmd="clear">clear</span>
+            <!-- chip-list-A duplicate for seamless loop -->
+            <span class="marquee-chip" data-cmd="kubectl get pods">kubectl get pods</span>
+            <span class="marquee-chip" data-cmd="kubectl describe pod payment-api-broken-1">kubectl describe pod payment-api-broken-1</span>
+            <span class="marquee-chip" data-cmd="kubectl logs payment-api-broken-1">kubectl logs payment-api-broken-1</span>
+            <span class="marquee-chip" data-cmd="terraform plan">terraform plan</span>
+            <span class="marquee-chip" data-cmd="helm list">helm list</span>
+            <span class="marquee-chip" data-cmd="prometheus query">prometheus query</span>
+            <span class="marquee-chip" data-cmd="hashir --about">hashir --about</span>
+            <span class="marquee-chip" data-cmd="hashir --projects">hashir --projects</span>
+            <span class="marquee-chip" data-cmd="hashir --stack">hashir --stack</span>
+            <span class="marquee-chip" data-cmd="hashir --contact">hashir --contact</span>
+            <span class="marquee-chip" data-cmd="whoami">whoami</span>
+            <span class="marquee-chip" data-cmd="fortune">fortune</span>
+            <span class="marquee-chip" data-cmd="ls projects/">ls projects/</span>
+            <span class="marquee-chip" data-cmd="cat /etc/passwd">cat /etc/passwd</span>
+            <span class="marquee-chip" data-cmd="ping recruiter">ping recruiter</span>
+            <span class="marquee-chip" data-cmd="git blame">git blame</span>
+            <span class="marquee-chip" data-cmd="vim">vim</span>
+            <span class="marquee-chip" data-cmd="sudo hire-me">sudo hire-me</span>
+            <span class="marquee-chip" data-cmd="coffee">coffee</span>
+            <span class="marquee-chip" data-cmd="rm -rf /">rm -rf /</span>
+            <span class="marquee-chip" data-cmd="make chaos">make chaos</span>
+            <span class="marquee-chip" data-cmd="help">help</span>
+            <span class="marquee-chip" data-cmd="clear">clear</span>
+          </div>
+        </div>
+
+        <!-- Terminal box -->
+        <div class="term-box" id="term-box">
+          <!-- Window chrome -->
+          <div class="term-chrome">
+            <span class="term-dot term-dot--red"></span>
+            <span class="term-dot term-dot--amber"></span>
+            <span class="term-dot term-dot--green"></span>
+            <span class="term-caption">hashir@portfolio: ~</span>
+          </div>
+          <!-- Terminal body -->
+          <div class="term-body" id="term-body">
+            <!-- Pre-seeded session -->
+            <div class="term-line term-line--cmd"><span class="term-prompt">$</span><span class="term-cmd-text"> kubectl get pods -n havoc</span></div>
+            <div class="term-line"><span class="term-output">NAME                    READY   STATUS             RESTARTS   AGE</span></div>
+            <div class="term-line"><span class="term-output">chaos-agent-7d8f9c      1/1     <span class="term-ok">Running</span>            0          3d</span></div>
+            <div class="term-line"><span class="term-output">chaos-agent-9k2m1       1/1     <span class="term-ok">Running</span>            0          3d</span></div>
+            <div class="term-line"><span class="term-output">experiment-runner-x4f   1/1     <span class="term-ok">Running</span>            0          12h</span></div>
+            <div class="term-line"><span class="term-output">payment-api-broken-1    0/1     <span class="term-err">CrashLoopBackOff</span>   7          2m</span></div>
+            <div class="term-line term-line--blank"></div>
+            <div class="term-line term-line--cmd"><span class="term-prompt">$</span><span class="term-cmd-text"> help</span></div>
+            <div class="term-line"><span class="term-output">Try: kubectl get pods, hashir --about, sudo hire-me, clear</span></div>
+            <div class="term-line term-line--blank"></div>
+            <!-- Active input line -->
+            <div class="term-input-line" id="term-input-line">
+              <span class="term-prompt">$</span>
+              <div class="term-input-wrap" id="term-input-wrap">
+                <input type="text" id="term-input" class="term-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input" />
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
